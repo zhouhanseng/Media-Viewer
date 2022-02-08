@@ -164,7 +164,7 @@ async function getContentType(url: string) {
   if (!/^https?:/.test(url)) {
     return null
   }
-  const response = await fetch(url, { method: 'HEAD', mode: 'cors' })
+  const response = await fetch(url.startsWith(CORS_PROXY) ? url : `${CORS_PROXY}/?${url}`, { method: 'HEAD', mode: 'cors' })
   if (response.status !== 200) {
     throw new Error(response.statusText)
   }
