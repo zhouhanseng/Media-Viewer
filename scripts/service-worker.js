@@ -9,5 +9,13 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   console.log('ddd')
-  return fetch('https://www.baidu.com')
+  e.respondWith(Promise.resolve(
+    new Response('<h1>Offline</h1>', {
+      status: 200,
+      statusText: 'OK',
+      headers: {
+        'Content-type': 'text/html'
+      }
+    })
+  ))
 })
