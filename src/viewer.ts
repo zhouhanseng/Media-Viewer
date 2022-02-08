@@ -15,13 +15,7 @@ export async function onView(options: ViewerOptions): Promise<Element | null> {
     try {
       type = (await getContentType(options.url)) ?? ''
     } catch (error) {
-      if (options.url.startsWith(CORS_PROXY)) {
-        throw error
-      }
-      return onView({
-        ...options,
-        url: `${CORS_PROXY}/?${encodeURIComponent(options.url)}`,
-      })
+      throw error
     }
   }
   options.url = prepareURL(options.url)

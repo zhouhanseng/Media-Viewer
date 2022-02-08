@@ -1,3 +1,5 @@
+const CORS_PROXY = 'https://cors.r2d2.to'
+
 self.addEventListener('install', event => {
   console.log('sw install')
 });
@@ -8,6 +10,6 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  console.log('ddd')
-  e.respondWith(fetch('https://www.baidu.com'))
+  const { url } = event.request
+  e.respondWith(fetch(url.startsWith(CORS_PROXY) ? url : `${CORS_PROXY}/?${url}`))
 })
