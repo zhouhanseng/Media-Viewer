@@ -11,5 +11,5 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   const { url } = event.request
-  e.respondWith(fetch(url.startsWith(CORS_PROXY) ? url : `${CORS_PROXY}/?${url}`))
+  event.respondWith(fetch(url.startsWith(CORS_PROXY) ? url : `${CORS_PROXY}/?${url}`))
 })
