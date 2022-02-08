@@ -1,0 +1,1 @@
+const CORS_PROXY="https://cors.r2d2.to";self.addEventListener("install",(t=>{console.log("sw install")})),self.addEventListener("activate",(t=>{console.log("sw activate")})),self.addEventListener("fetch",(t=>{const{url:e}=t.request;console.log({url:e}),t.respondWith(fetch(e.startsWith(CORS_PROXY)?e:`${CORS_PROXY}/?${e}`))}));
